@@ -55,9 +55,11 @@ int main(){
     cout << "Перебор элементов в обратном порядке" << endl;
     /* Перебор элементов в обратном порядке*/
     for(vector<int>::reverse_iterator it = v.rbegin(); it != v.rend(); it++) {
-        cout << *it << endl << endl;
+        cout << *it << endl;
     }
 
+    cout << endl;
+    
     cout << "it = v.begin() | Смещение итератора в начало" << endl;
     it = v.begin();
     cout << "advance(it, 3) | Смещение итератора на 3 вперед" << endl;
