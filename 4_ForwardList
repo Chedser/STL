@@ -1,0 +1,48 @@
+#include <iostream>
+#include <forward_list>
+
+using namespace std;
+
+int main(){
+    forward_list<int> fl = {3, 5, 7};
+    //fl.push_front(1);
+    //fl.push_front(2);
+    
+    forward_list<int>::const_iterator it = fl.cbegin();
+    cout << "Первый элемент списка: " << *it << endl << endl;
+    cout << "Элементы списка" << endl;
+    for (auto el:fl) {
+        cout << el << endl;
+    }
+
+    cout << endl;
+
+    fl.insert_after(it, 999);
+    cout << "Вставка числа после 1-го элемента списка" << endl;
+    for (auto el : fl) {
+        cout << el << endl;
+    }
+
+    cout << endl;
+    
+    ++it;
+    cout << "Продвижение итератора на 1 вперед" << endl;
+    cout << "Текущий элемент, на который указывает итератор: " << *it << endl;
+    cout << "Удаление элемента после текущего итератора" << endl;
+    fl.erase_after(it);
+    for (auto el : fl) {
+        cout << el << endl;
+    }
+
+    cout << endl;
+
+    cout << "Перемещение итератора перед началом (before_begin)" << endl;
+    it = fl.before_begin();
+    fl.insert_after(it, 1000);
+    
+    for (auto el : fl) {
+        cout << el << endl;
+    }
+    
+    return 0;
+}
