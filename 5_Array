@@ -1,0 +1,43 @@
+#include <iostream>
+#include <array>
+
+using namespace std;
+
+int main(){
+    setlocale(LC_ALL, "ru");
+    
+    array<int, 4> arr = {1, 2, 3, 4};
+   // cout << arr[10]; // Программа запустится, но вылетит окно с ошибкой
+  //  cout << arr.at(10); // Программа НЕ запустится. Выбросит исключение в IDE
+
+    cout << "Элементы массива" << endl;
+
+    for (int i = 0; i < arr.size(); i++) {
+        cout << arr[i] << endl;
+    }
+    
+    cout << endl;
+
+    arr.fill(1);
+    cout << "Заполнение массива единицами (arr.fill(1))" << endl;
+    for (auto el : arr) {
+        cout << el << endl;
+    }
+
+    cout << endl;
+
+    cout << "arr.front()" << endl;
+    cout << arr.front() << endl;
+    cout << "arr.back()" << endl;
+    cout << arr.back() << endl;
+   
+    cout << "arr.at(10)" << endl;
+    try { // В цикле лучше не использовать, потому что использует много ресурсов
+        cout << arr.at(10);
+    }
+    catch (std::exception& ex) {
+        cout << ex.what() << endl;
+    }
+
+    return 0;
+}
