@@ -1,0 +1,32 @@
+#include <iostream>
+#include <vector>
+#include <list>
+#include <deque>
+#include <stack>
+
+using namespace std;
+
+int main(){
+    setlocale(LC_ALL, "ru");
+
+    stack<int, vector<int>> st;
+    st.push(1);
+    st.push(2);
+    st.push(3);
+    st.emplace(4);
+
+    cout << "st.size(): " << st.size() << endl;
+    cout << "st.top(): " << st.top() << endl;
+
+    auto a = st._Get_container();
+    cout << "st._Get_container()" << endl;
+    cout << "Первый элемент стека: " << a.at(0) << endl;
+
+    cout << "Элементы стека" << endl;
+    while (!st.empty()) {
+        cout << st.top() << endl;
+        st.pop();
+    }
+
+    return 0;
+}
