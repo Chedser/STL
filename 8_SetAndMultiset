@@ -1,0 +1,83 @@
+#include <iostream>
+#include <vector>
+#include <set>
+
+using namespace std;
+
+ template<typename T> void Print(set<T>& s) {
+    for (auto& el: s) {
+        cout << el << endl;
+    }
+}
+  
+int main() {
+    setlocale(LC_ALL, "ru");
+    set<int> s;
+    
+    const int COUNT = 5;
+
+    for (int i = 0; i < COUNT; ++i) {
+        s.insert(i + 1);
+    }
+
+    cout << "Элементы множества:" << endl;
+    Print<int>(s);
+
+    s.insert(1);
+
+    cout << endl;
+
+    cout << "Попытка добавить 1" << endl;
+    cout << "Элементы множества:" << endl;
+    Print<int>(s);
+
+    cout << endl;
+
+   cout << "Введите число, которое нужно найти" << endl;
+   int number_to_find;
+   cin >> number_to_find;
+   set<int>::iterator it = s.find(number_to_find);
+   if (it != s.end()) {
+       cout << "Число " << number_to_find << " найдено" << endl;
+   }else {
+       cout << "Число " << number_to_find << " не найдено" << endl;
+   }
+   
+   cout << "Введите число, которое нужно удалить" << endl;
+   cin >> number_to_find;
+   size_t res =   s.erase(number_to_find);
+   if (res) {
+       cout << "Число " << number_to_find << " удалено" << endl;
+   }else {
+       cout << "Число " << number_to_find << " не найдено" << endl;
+   }
+   cout << endl;
+
+   cout << "Элементы множества:" << endl;
+   Print<int>(s);
+
+   cout << endl;
+
+   multiset<int> s2{1, 1, 2, 2, 3, 3, 4,5};
+   cout << "Создание мультимножества" << endl;
+   cout << "Элементы мультимножества" << endl;
+   for (auto& el : s2) {
+       cout << el << endl;
+   }
+
+   cout << endl;
+
+   auto it_lower_bound = s2.lower_bound(2);
+   auto it_upper_bound = s2.upper_bound(2);
+
+   cout << "s2.lower_bound(2): " << *it_lower_bound << endl;
+   cout << "s2.upper_bound(2): " << *it_lower_bound << endl;
+   
+   auto it_equal_range = s2.equal_range(1);
+      
+   cout << "s2.equal_range(1)" << endl;
+   cout << "First: " << *it_equal_range.first << endl;
+   cout << "Second: " << *it_equal_range.second << endl;
+
+    return 0;
+}
