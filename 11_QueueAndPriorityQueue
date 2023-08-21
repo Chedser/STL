@@ -1,0 +1,54 @@
+#include <iostream>
+#include <queue>
+#include <list> 
+
+using namespace std;
+
+
+int main(){
+    queue<int, list<int>> q;
+    
+    q.emplace(1);
+    q.emplace(2);
+    q.emplace(3);
+    
+    auto a = q._Get_container();
+
+    cout << "Элементы очереди" << endl;
+    for (auto el:a) {
+        cout << el << endl;
+    }
+
+    cout << "q.front(): " << q.front() << endl;
+    cout << "q.back(): " << q.back() << endl;
+    cout << endl;
+    q.pop();
+    cout << "q.pop()" << endl;
+    cout << "q.front(): " << q.front() << endl;
+    cout << "q.back(): " << q.back() << endl;
+
+    priority_queue<int, vector<int>> mq;
+
+    mq.push(60);
+    mq.push(1);
+    mq.push(2);
+    mq.push(3);
+    mq.push(55);
+    mq.push(4);
+
+    cout << "mq.top(): " << mq.top() << endl;
+    cout << endl;
+    cout << "mq.top()" << endl;
+    mq.pop();
+    cout << "mq.pop(): " << mq.top() << endl;
+
+    cout << "Элементы очереди с приоритетом" << endl;
+
+    while (!mq.empty()) {
+        cout << mq.top() << endl;
+        mq.pop();
+
+    }
+    
+    return 0;
+}
