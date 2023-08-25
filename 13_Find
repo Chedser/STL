@@ -1,0 +1,92 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+template<typename T> void Print(const vector<T>& v) {
+	for(auto el: v) {
+		cout << el << endl;
+	}
+}
+
+class Person {
+	
+	public: 
+		string name;
+		int score;
+		Person(string name, int score) {
+		this->name = name;
+		this->score = score;
+	};
+
+
+};
+
+int main(){
+	setlocale(LC_ALL, "ru");
+	
+	vector<int> v = {6, 4, 3, 7};
+	cout << "Элементы списка" << endl;
+	Print(v);
+
+	cout << endl;
+
+	int elToFind;
+
+	cout << "Введите элемент, который нужно найти" << endl;
+	cin >> elToFind;
+
+	vector<int>::iterator it =  find(v.begin(), v.end(), elToFind);
+
+	if (it != v.end()) {
+		cout << "Элемент " << elToFind << " найден" << endl;
+	}else {
+		cout << "Элемент " << elToFind << " НЕ найден" << endl;
+	}
+
+	cout << endl;
+
+	it = find_if(v.begin(), v.end(), [](int a) {
+		return a%2 == 0;
+		});
+
+	if (it != v.end()) {
+		cout << "Четный элемент найден: " << *it << endl;
+	}
+	else {
+		cout << "Четный элемент НЕ найден: " << endl;
+	}
+
+	it = find_if_not(v.begin(), v.end(), [](int a) {
+		return a < 0;
+		});
+
+	if (it != v.end()) {
+		cout << "Элемент >0 найден:" << *it << endl;
+	}
+	else {
+		cout << "Элемент >0 НЕ найден: " << endl;
+	}
+
+	vector<Person> people =
+	{
+	Person("Петя", 1),
+	Person("Вася", 2),
+	Person("Саша", 3)
+	};
+	
+	auto res = find_if(people.begin(), people.end(), [](const Person& p) {
+		return p.score > 2;
+		});
+
+	if (res != people.end()) {
+		cout << "Элемент >2 найден:" << res->name << endl;
+	}else {
+		cout << "Элемент >2 НЕ найден: " << endl;
+	}
+
+	return 0;
+}
+
