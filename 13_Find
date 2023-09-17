@@ -20,8 +20,6 @@ class Person {
 		this->name = name;
 		this->score = score;
 	};
-
-
 };
 
 int main(){
