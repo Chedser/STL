@@ -1,0 +1,66 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class Person {
+public:
+	string name;
+	int score;
+	int age;
+	Person(string name, int score, int age) {
+		this->name = name;
+		this->score = score;
+		this->age = age;
+	};
+};
+
+void Print(const vector<int>& v) {
+	for (auto el : v) {cout << el << endl;}
+}
+
+void Print(const vector<Person>& v) {
+	for (Person el : v) {
+		cout << "name: " << el.name <<
+			 " age: " << el.age << 
+			 " score: " << el.score << endl;
+	}
+}
+
+
+int main() {
+	setlocale(LC_ALL, "ru");
+
+	vector<int> v{ 1, 2, 3, 4, 5 };
+
+	cout << "Элементы массива" << endl;
+	Print(v);
+	cout << "Удаление 4" << endl;
+	auto result = remove(v.begin(), v.end(), 4); //Возвращает итератор
+	v.erase(result, v.end());
+	cout << "Элементы массива" << endl;
+	Print(v);
+
+	vector<Person> people{
+		Person("Петя", 30, 22),
+		Person("Даша", 200, 25),
+		Person("Катя", 198, 24),
+		Person("Андрей", 180, 23),
+		Person("Сергей", 50, 30),
+		Person("Денис", 180, 40)
+	};
+
+	cout << "vector<Person>" << endl;
+	Print(people);
+
+	cout << "Удаление score<180 из vector<Person>" << endl;
+	auto result = remove_if(people.begin(), people.end(), [](const Person& p) {
+		return p.score < 180;
+	});
+	
+	people.erase(result, people.end());
+
+	return 0;
+}
