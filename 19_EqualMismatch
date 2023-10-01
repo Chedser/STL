@@ -1,0 +1,42 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <numeric>
+
+using namespace std;
+
+void Print(const vector<int>& v) {
+	for (auto el : v) { cout << el << endl; }
+}
+
+void Print(int* arr, const int size) {
+	for (int i = 0; i < size; i++) { cout << arr[i] << endl; }
+}
+
+int main() {
+	setlocale(0, "ru");
+
+	const int SIZE = 3;
+	int arr1[] = {1,2,3};
+	int arr2[] = { 4,5,6 };
+
+	cout << "Элементы массива 1" << endl;
+	Print(arr1, SIZE);
+	cout << "Элементы массива 2" << endl;
+	Print(arr2, SIZE);
+
+	bool result = equal(begin(arr1), end(arr1), begin(arr2), end(arr2));
+	cout << "Элементы равны через equal: " << result << endl;
+		
+	auto result2 = mismatch(begin(arr1), end(arr1), begin(arr2), end(arr2));
+	
+	if (result2.first == end(arr1) && result2.second == begin(arr2)) {
+		cout << "Элементы равны через mismatch" << endl;
+	}
+	else {
+		cout << "Элементы НЕ равны через mismatch" << endl;
+	}
+
+	return 0;
+}
