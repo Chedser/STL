@@ -1,1 +1,80 @@
+#include <iostream>
+#include <algorithm>
+#include <ctime>
 
+using namespace std;
+
+void Print(int* arr, const int size) {
+	for (int i = 0; i < size; i++) { cout << arr[i] << endl; }
+}
+
+class IAction{
+public:
+	virtual void Action() = 0;
+};
+
+class CatAction : public IAction {
+public:
+	virtual void Action() override {
+		cout << "Гладим кота" << endl;
+	}
+};
+
+class TeaAction : public IAction {
+public:
+	virtual void Action() override {
+		cout << "Пьем чай" << endl;
+	}
+};
+
+class DogAction : public IAction {
+public:
+	virtual void Action() override {
+		cout << "Гуляем с собакой" << endl;
+	}
+};
+
+class SleepAction : public IAction {
+public:
+	virtual void Action() override {
+		cout << "" << endl;
+	}
+};
+
+int main() {
+	setlocale(0, "ru");
+
+	srand(time(NULL));
+
+
+	const int SIZE = 6;
+	int arr[SIZE] = { 1, 2, 3, 4, 5, 6 };
+
+	cout << "Элементы массива" << endl;
+	Print(arr, SIZE);
+
+	random_shuffle(begin(arr), end(arr));
+	cout << "Элементы массива после random_shuffle" << endl;
+	Print(arr, SIZE);
+
+	cout << "Элементы массива IAction" << endl;
+	IAction* actions[] = {
+		new CatAction(),
+		new DogAction(),
+		new TeaAction()
+	};
+
+		for(auto el: actions) {
+			el->Action();
+		};
+	
+		random_shuffle(begin(actions), end(actions));
+
+		cout << "Элементы массива IAction после random_shuffle" << endl;
+
+		for (auto el : actions) {
+			el->Action();
+		};
+
+	return 0;
+}
