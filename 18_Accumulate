@@ -1,0 +1,53 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
+#include <numeric>
+
+using namespace std;
+
+void Print(const vector<int>& v) {
+	for (auto el : v) { cout << el << endl; }
+}
+
+void Print(int* arr, const int size) {
+	for (int i = 0; i < size; i++) { cout << arr[i] << endl; }
+}
+
+int main() {
+	setlocale(LC_ALL, "ru");
+
+	vector<int> v = { 1, 2, 3 };
+
+	cout << "Элементы вектора" << endl;
+	Print(v);
+	auto result =  accumulate(v.begin(), v.end(), 0);
+	cout << "Сумма: " << result << endl;
+	
+	const int SIZE = 4;
+	int arr[] = { 4, 3, 5, 2 };
+
+	cout << "Элементы массива" << endl;
+	Print(arr, SIZE);
+	result = accumulate(begin(arr), end(arr), 0);
+	cout << "Сумма: " << result << endl;
+	result = accumulate(begin(arr), end(arr), 1, [](int a, int b) {
+		return a * b;
+		});
+	cout << "Произведение: " << result << endl;
+	result = accumulate(begin(arr), end(arr), 0, [](int a, int b) {
+		if (b % 2 == 0) {
+			return a + b;
+		}
+		else { return a; }
+
+		});
+	cout << "Сумма четных: " << result << endl;
+
+	string result2 = accumulate(next(begin(v)), end(v), to_string(v[0]), [](string a, int b) {
+		return a + "-" + to_string(b);
+		});
+	cout << "Строка-вектор: " << result2 << endl;
+
+	return 0;
+}
