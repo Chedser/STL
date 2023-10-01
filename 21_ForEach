@@ -1,0 +1,39 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+
+void Print(const vector<int>& v) {
+	for (auto el : v) { cout << el << endl; }
+}
+
+void Print(int* arr, const int size) {
+	for (int i = 0; i < size; i++) { cout << arr[i] << endl; }
+}
+
+int main() {
+	setlocale(0, "ru");
+
+	const int SIZE = 3;
+	int arr[SIZE] = {1, 2, 3};
+
+	cout << "Элементы массива через for_each" << endl;
+
+	for_each(begin(arr), end(arr), [](int el) {
+		cout << el << endl;
+		}
+	);
+
+	for_each(begin(arr), end(arr), [](int& el) {
+		++el;
+		}
+	);
+	
+	cout << "Элементы массива через for_each после изменения" << endl;
+	Print(arr, SIZE);
+
+	return 0;
+}
