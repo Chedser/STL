@@ -1,1 +1,50 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <string>
 
+using namespace std;
+
+
+void Print(const vector<int>& v) {
+	for (auto el : v) { cout << el << endl; }
+}
+
+void Print(int* arr, const int size) {
+	for (int i = 0; i < size; i++) { cout << arr[i] << endl; }
+}
+
+int main() {
+	setlocale(0, "ru");
+
+	const int SIZE = 6;
+	int arr[SIZE] = { 1, 2, 2, 2, 3, 4 };
+
+	cout << "Элементы массива" << endl;
+	Print(arr, SIZE);
+
+	int* it = unique(begin(arr), end(arr));
+	cout << "Уникальные элементы массива" << endl;
+	for_each(begin(arr), it, [](int& el) {
+		cout << el << endl;
+		});
+
+	vector<int> v = { 11, 22, 22, 3, 7, 5, 77, 77 };
+	cout << "Элементы вектора" << endl;
+	Print(v);
+	
+	auto result = unique(v.begin(), v.end());
+
+	v.erase(result, v.end());
+	cout << "Уникальные элементы вектора" << endl;
+	Print(v);
+
+	v = { 11, 22, 22, 3, 7, 5, 77, 77 };
+	vector<int> v2;
+
+	unique_copy(v.begin(), v.end(), back_inserter(v2));
+	cout << "Уникальные элементы вектора v2 после копированияы" << endl;
+	Print(v2);
+
+	return 0;
+}
